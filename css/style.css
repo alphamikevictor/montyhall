@@ -1,0 +1,11 @@
+span.door {
+  width: 500px; height: 400px;
+  background: url("../images/DoorWithGoat.png") no-repeat;
+  position: absolute;
+}
+
+h1.technique-two {
+  width: 2350px; height: 75px;
+  background: url("images/header-image.jpg") top right;
+  margin: 0 0 0 -2000px;
+}
