@@ -1,82 +1,100 @@
-<!doctype>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8">
+<title>.:: Monty Hall game simulation ::.</title>
+<link href="css/bootstrap.css" rel="stylesheet">
 <script src="js/jquery.js"></script>
-<title>The Monty Hall game simulator</title>
-<link href="css/style.css" rel="stylesheet" media="screen">
+<script src="js/common.js"></script>
+<script src="js/interactive.js"></script>
+<script src="js/bootstrap.js"></script>
+<style type="text/css">
+body {
+    padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+@media ( max-width : 980px) { /* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+</style>
 </head>
+
 <body>
 </body>
-<div>Take a look on the code in <a href="https://github.com/alphamikevictor/montyhall">GitHub</a></div>
-<div><h1 id="message"></div>
-<div id="doors"></div>
-<script>
-$(function(){
-    doors = [];
-    $.ajax({
-        method: 'POST',
-        url: 'rest/some.php',
-        success: function(data){
-            doors = data;
-            challenge();
-            }
-    });
-    function challenge(){
-        for (door in doors){
-            $("#doors").append("<img id='door"+door+"' class='door' src='images/Door.png'>");
-        }
-        $("#message").text("There are 3 doors, behind 2 of them there are a goat, and behind one of them there is a car, choose one");
-        $("img.door").click(function(){
-            clickeddoor = this.id.match(/[0-9]+/)[0];
-            discoverDoor = 0;
-            theOtherDoor = 0;
-            if (doors[clickeddoor] == 'car') {
-                element = Math.floor((Math.random()*100))%2;
-                for (i=0;i<3;i++){
-                    if ( (doors[i] == 'goat' ) && (element == 0) ){
-                        discoverDoor = i; 
-                    }
-                    else if (doors[i] == 'goat') {
-                        theOtherDoor=i;
-                        element--;
-                    }
-                }
-            }
-            else {
-                for (i=0;i<3;i++){
-                    if ( ( i != clickeddoor ) && doors[i] == 'goat') discoverDoor=i;
-                    if ( ( i != clickeddoor ) && doors[i] == 'car') theOtherDoor=i;
-                }
-            }
-            $("img.door").off();
-            $("#door" + discoverDoor).replaceWith("<img class='swapable' src='images/DoorWithGoat.png'>");
-            $("#door" + clickeddoor).replaceWith("<img class='query' src='images/DoorQuery.png'>");
-            $("#message").text("Well, you chosed door number " + (parseInt(clickeddoor) +1) + ", I can discover you there is a Goat in door number " + (discoverDoor +1) +". Do you want to change your door?");
-            $("#message").after("<button class='swap'>Swap</button><button class='maintain'>Don't swap</button>");
-            $(".maintain").click(function(){
-                if (doors[clickeddoor] == 'car'){
-                    $("#message").text("Well done, you WIN a car");
-                    $(".query").replaceWith("<img class='car' src='images/DoorCar.png'>");
-                }
-                else {
-                    $("#message").text("Sorry, you win a goat");    
-                    $(".query").replaceWith("<img class='goat' src='images/DoorWithGoat.png'>");
-                }
-                $("button").off();
-            });
-            $(".swap").click(function(){
-                if (doors[clickeddoor] == 'goat'){
-                    $("#message").text("Well done, you WIN a car");
-                    $(".door").replaceWith("<img class='car' src='images/DoorCar.png'>");
-                }
-                else {
-                    $("#message").text("Sorry, you win a goat");    
-                    $(".door").replaceWith("<img class='goat' src='images/DoorWithGoat.png'>");
-                }
-                $("button").off();
-            });
-        });
-    }
-});
-</script>
+<!--  Menu Start -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a class="brand" href="index.jsp">.:: Quiero Ganar La Primitiva	::.</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<li><a href="index.jsp">Inicio</a></li>
+					<li><a href="apuesta.jsp">Realizar apuesta</a></li>
+				</ul>
+    <!--  Menu Start -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="index.jsp">.::   Monty Hall Game Simulation	::.</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active"><a>Interactive</a></li>
+						<li><a>Automatic Simulation</a></li>
+                        <li><a href="https://github.com/alphamikevictor/montyhall">Browse code on GitHub</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+	<!--  Menu End -->				
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+</div>
+<!--  Menu End -->
+<div class="row-fluid">
+    <div class="span1"></div>
+    <div class="span10">
+        <div id="messages">
+        </div>
+    </div>
+    <div class="span1"></div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+            <li><a href="http://alosfogones.com">A Los Fogones</a></li>
+            <li><a href="http://recipesfromspain.com">Recipes from Spain</a></li>
+            <li><a href="http://github.com/alphamikevictor">My projects on GitHub</a></li>
+            </ul>
+            </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+            <div class="hero-unit">
+                <div class="row-fluid" id="doors">
+                </div>
+                <div class="row-fluid"><div class="span9"></div></div>
+                <div class="row-fluid">
+                    <div class="span3"><a class="btn btn-large btn-primary swap" style="display:none">Swap</a></div>
+                    <div class="span3"><a class="btn btn-large btn-primary maintain" style="display:none">Don't swap</a></div>
+                    <div class="span3"><a class="btn btn-large btn-primary restart" style="display:none">Restart</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </html>
