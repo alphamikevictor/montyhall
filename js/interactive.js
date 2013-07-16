@@ -13,8 +13,6 @@ function start(){
     });
 }
 function challenge(){
-    console.log("Esto en lo que tengo en doors:");
-    console.log(doors);
     for (door in doors){
         $("#doors").append("<div class='span3'><img id='door"+door+"' class='door' src='images/Door.png'></div>");
     }
