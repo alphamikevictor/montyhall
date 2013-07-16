@@ -7,6 +7,7 @@
 </head>
 <body>
 </body>
+<div>Take a look on the code in <a href="https://github.com/alphamikevictor/montyhall">GitHub</a></div>
 <div><h1 id="message"></div>
 <div id="doors"></div>
 <script>
