@@ -2,10 +2,9 @@ $(function(){
     start();
 });
 function start(){
-    doors = [];
     var mh = new MontyHall();
-    doors = mh.getDoors();
-    challenge();
+    var doors = mh.getDoors();
+    challenge(doors);
     // $.ajax({
     //     method: 'POST',
     //     url: 'rest/some.php',
@@ -15,7 +14,7 @@ function start(){
     //         }
     // });
 }
-function challenge(){
+function challenge(doors){
     for (door in doors){
         $("#doors").append("<div class='span3'><img id='door"+door+"' class='door' src='images/Door.png'></div>");
     }

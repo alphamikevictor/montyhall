@@ -16,7 +16,7 @@ function showMessageError(message){
 }
 
 function MontyHall() {
-    this.doors = [];
+    this.doors = [0,0,0];
     this.choosedDoor = 0;
     for (var i=0;i<3;i++){
         this.doors[i]='goat';
