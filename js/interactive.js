@@ -3,14 +3,17 @@ $(function(){
 });
 function start(){
     doors = [];
-    $.ajax({
-        method: 'POST',
-        url: 'rest/some.php',
-        success: function(data){
-            doors = data;
-            challenge();
-            }
-    });
+    var mh = new MontyHall();
+    doors = mh.getDoors();
+    challenge();
+    // $.ajax({
+    //     method: 'POST',
+    //     url: 'rest/some.php',
+    //     success: function(data){
+    //         doors = data;
+    //         challenge();
+    //         }
+    // });
 }
 function challenge(){
     for (door in doors){
