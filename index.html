@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <title>.:: Monty Hall game simulation ::.</title>
 <link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/jquery-ui.css" rel="stylesheet">
 <script src="js/jquery.js"></script>
+<script src="js/jquery-ui.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/interactive.js"></script>
 <script src="js/automatic.js"></script>
@@ -35,7 +37,7 @@ body {
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a class="brand" href="index.php">.::   Monty Hall Game Simulation	::.</a>
+				<a class="brand" href="/">.::   Monty Hall Game Simulation	::.</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active interactive"><a>Interactive</a></li>
@@ -86,7 +88,31 @@ body {
                 </div>
             </div>
             <div class="hero-unit" id="automatic" style="display:none">
-                <h1>Automatic</h1>
+                <h2>Simulation</h2>
+                <div class="row-fluid">
+                    <div class="span9">
+                        <form id="simulation" class="form-inline">
+                            <input type="number" id="numbersimulations" placeholder="Number of simulations"><button class="btn btn-primary" id="simulate">Simulate</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row fluid">
+                    <table class="table table-hoover table-condensed table-bordered" id="resultsSimulation" style="display:none">
+                        <thead>
+                            <tr>
+                                <th></th><th># times you win the car</th><th>% times you win the car</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>When you swap the door</td><td><div id="winSwap"></div></td><td><div id="winSwapPercent"></div></td>
+                            </tr>
+                            <tr>
+                                <td>When you don't swap the door</td><td><div id="winNoSwap"></div></td><td><div id="winNoSwapPercent"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

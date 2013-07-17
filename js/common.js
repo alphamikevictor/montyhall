@@ -17,6 +17,7 @@ function showMessageError(message){
 
 function MontyHall() {
     this.doors = [];
+    this.choosedDoor = 0;
     for (var i=0;i<3;i++){
         this.doors[i]='goat';
     }
@@ -28,6 +29,17 @@ MontyHall.prototype.getDoors = function(){
     return this.doors;
 };
 
+MontyHall.prototype.pickRandomDoor = function(){
+    this.choosedDoor = Math.floor((Math.random()*100))%3;
+};
+
+MontyHall.prototype.getPrizeSwap = function(){
+    if (this.doors[this.choosedDoor] == 'goat') { return true;} else {return false;}
+};
+
+MontyHall.prototype.getPrizeNoSwap = function(){
+    if (this.doors[this.choosedDoor] == 'goat') { return false;} else {return true;}
+};
 
 
 $(function(){
