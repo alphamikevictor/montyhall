@@ -7,6 +7,7 @@
 <script src="js/jquery.js"></script>
 <script src="js/common.js"></script>
 <script src="js/interactive.js"></script>
+<script src="js/automatic.js"></script>
 <script src="js/bootstrap.js"></script>
 <style type="text/css">
 body {
@@ -30,25 +31,15 @@ body {
 
 <body>
 </body>
-<!--  Menu Start -->
-<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container-fluid">
-			<a class="brand" href="index.jsp">.:: Quiero Ganar La Primitiva	::.</a>
-			<div class="nav-collapse collapse">
-				<ul class="nav">
-					<li><a href="index.jsp">Inicio</a></li>
-					<li><a href="apuesta.jsp">Realizar apuesta</a></li>
-				</ul>
     <!--  Menu Start -->
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a class="brand" href="index.jsp">.::   Monty Hall Game Simulation	::.</a>
+				<a class="brand" href="index.php">.::   Monty Hall Game Simulation	::.</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"><a>Interactive</a></li>
-						<li><a>Automatic Simulation</a></li>
+						<li class="active interactive"><a>Interactive</a></li>
+						<li class="automatic"><a>Automatic Simulation</a></li>
                         <li><a href="https://github.com/alphamikevictor/montyhall">Browse code on GitHub</a></li>
 					</ul>
 				</div>
@@ -84,7 +75,7 @@ body {
             </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-            <div class="hero-unit">
+            <div class="hero-unit" id="interactive">
                 <div class="row-fluid" id="doors">
                 </div>
                 <div class="row-fluid"><div class="span9"></div></div>
@@ -93,6 +84,9 @@ body {
                     <div class="span3"><a class="btn btn-large btn-primary maintain" style="display:none">Don't swap</a></div>
                     <div class="span3"><a class="btn btn-large btn-primary restart" style="display:none">Restart</a></div>
                 </div>
+            </div>
+            <div class="hero-unit" id="automatic" style="display:none">
+                <h1>Automatic</h1>
             </div>
         </div>
     </div>
